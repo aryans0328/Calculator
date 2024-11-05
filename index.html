@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()" id="c">C</button>
+            <button onclick="deleteLast()" id="del">DEL</button>
+            <button onclick="insert('%')">%</button>
+            <button onclick="insert('/')">÷</button>
+            
+            <button onclick="insert('7')">7</button>
+            <button onclick="insert('8')">8</button>
+            <button onclick="insert('9')">9</button>
+            <button onclick="insert('*')">×</button>
+            
+            <button onclick="insert('4')">4</button>
+            <button onclick="insert('5')">5</button>
+            <button onclick="insert('6')">6</button>
+            <button onclick="insert('-')">−</button>
+            
+            <button onclick="insert('1')">1</button>
+            <button onclick="insert('2')">2</button>
+            <button onclick="insert('3')">3</button>
+            <button onclick="insert('+')">+</button>
+            
+            <button onclick="insert('0')">0</button>
+            <button onclick="insert('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="insert('(')">(</button>
+            <button onclick="insert(')')">)</button>
+
+            <!-- Scientific Functions -->
+            <button onclick="insert('Math.sin(')">sin</button>
+            <button onclick="insert('Math.cos(')">cos</button>
+            <button onclick="insert('Math.tan(')">tan</button>
+            <button onclick="insert('Math.log(')">log</button>
+            <button onclick="insert('Math.exp(')">exp</button>
+            <button onclick="insert('Math.sqrt(')">√</button>
+            <button onclick="insert('Math.pow(,')">x<sup>y</sup></button>
+        </div>
+    </div>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .calculator {
+            width: 100%;
+            max-width: 350px;
+            background-color: #3333336b;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all ease 1s;
+        }
+        .calculator:hover{
+            max-width: 360px;
+        }
+        #display {
+            width: 100%;
+            padding: 20px;
+            background-color: #22222293;
+            color: #fff;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        button {
+            width: 25%;
+            padding: 20px;
+            background-color: #44444485;
+            color: #fff;
+            font-size: 18px;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: all ease 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        button:nth-child(4n) {
+            background-color: #6490a8;
+        }
+
+        button:nth-child(4n):hover {
+            background-color: #548198;
+        }
+        #c{
+            background: rgba(255, 0, 0, 0.767);
+        }
+    </style>
+
+<script>
+
+function insert(value) {
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function deleteLast() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+    try {
+        let display = document.getElementById("display");
+        display.value = eval(display.value);
+    } catch (e) {
+        alert("Invalid Input");
+        clearDisplay();
+    }
+}
+</script>
+
+</body>
+</html>
